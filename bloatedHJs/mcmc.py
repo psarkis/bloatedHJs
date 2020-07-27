@@ -45,6 +45,7 @@ def ln_lognormal(xmodel, mu, sigma):
 class SinglePlanetModel:
     def __init__(self, data, 
                 lumi_linear=True,
+                name=None,
                 interp_func_radius=None, interp_func_tint=None,
                 interp_func_prcb=None, interp_func_trcb=None, 
                 nwalkers=50, nburn=500, nsteps=500, thin=1,
@@ -55,6 +56,7 @@ class SinglePlanetModel:
                 show_traces=False):
         
         self.data               = data
+        self.name               = name
         self.interp_func_radius = utils.read_interp_func('data/interpFn_radius')
         self.interp_func_tint   = utils.read_interp_func('data/interpFn_tint')
         self.interp_func_prcb   = utils.read_interp_func('data/interpFn_prcb')
@@ -105,7 +107,10 @@ class SinglePlanetModel:
         else:
             bb = 'posterior'
 
-        self.identifier = '{0}_{1}_{2}'.format(self.data['System'], aa, bb)
+        if self.name is None:
+            self.identifier = '{0}_{1}_{2}'.format(self.data['System'], aa, bb)
+        else:
+            self.identifier = '{0}_{1}_{2}_{3}'.format(self.data['System'], self.name, aa, bb)
 
         
 
