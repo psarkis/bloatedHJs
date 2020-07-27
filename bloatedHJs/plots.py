@@ -8,15 +8,14 @@ and plots several diagnostic plots:
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
-import warnings
 
 import corner
 
-def trace_plot(samples, labels, identifier=None, save_plots=False, show_plots=True):
+def trace_plot(samples, labels, outdir=None, outfile=None, save_plots=False, show_traces=True):
     ii = samples.shape[2]
 
     fig, axes = plt.subplots(ii, 1, sharex=True, figsize=(8, 9))
-    plt.suptitle('{0}'.format(identifier))
+    plt.suptitle('{0}'.format(outfile))
     
     for i in range(ii):
         axes[i].plot(samples[:, :, i].T, color="k", alpha=0.4)
@@ -24,15 +23,13 @@ def trace_plot(samples, labels, identifier=None, save_plots=False, show_plots=Tr
         axes[i].set_ylabel(labels[i])
 
     if save_plots:
-        if identifier is not None:
-            plt.savefig('figures/{0}_traces.pdf'.format(identifier))
-        else:
-            warnings.warning('Name of the file is not specified ... the plot was not saved')
+        plt.savefig(outdir+'{0}_traces.pdf'.format(outfile))
 
-    if show_plots:
+    if show_traces:
         plt.show()
 
-def corner_plot(samples, data, derived_params=False, selected_columns=None, identifier=None, save_plots=True, show_plots=True, **kwargs):
+def corner_plot(samples, data, derived_params=False, selected_columns=None, \
+    outdir=None, outfile=None, save_plots=True, show_plots=True, **kwargs):
     '''
     This function makes the cornet plot of:
         - the fitted parameters
@@ -44,14 +41,14 @@ def corner_plot(samples, data, derived_params=False, selected_columns=None, iden
         if not derived_params:
             columns    = ['Lumi', 'Epsilon', 'Zhomo', 'Teq', 'Mp', 'Rp']
             truths     = [-1, -1, -1, data['Teq'], data['Mp'], data['Rp']]
-            identifier = identifier + '_fittedparams'
+            outfile    = outfile + '_fittedparams'
         if derived_params:
             columns    = ['Tint', 'Prcb', 'Trcb']
             truths     = [-1, -1, -1]
-            identifier = identifier + '_derivedparams'
+            outfile    = outfile + '_derivedparams'
     else:
-        columns    = selected_columns
-        identifier = identifier
+        columns = selected_columns
+        outfile = outfile
 
     X = samples[columns]
 
@@ -61,7 +58,7 @@ def corner_plot(samples, data, derived_params=False, selected_columns=None, iden
         corner.corner(X, labels=columns, quantiles=[0.16,0.5,0.84], show_titles=True, **kwargs)
 
     if save_plots is True:
-        plt.savefig('figures/{0}_corner.pdf'.format(identifier), bbox_inches='tight', dpi=400)
+        plt.savefig(outdir+'{0}_corner.pdf'.format(outfile), bbox_inches='tight', dpi=400)
 
     if show_plots:
         plt.show()

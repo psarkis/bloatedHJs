@@ -52,7 +52,7 @@ class SinglePlanetModel:
                 sample_prior=False, 
                 save_chains=True, 
                 diagnostic_plots=True, save_plots=True, \
-                close_plots=True, show_plots=True):
+                show_traces=False):
         
         self.data               = data
         self.interp_func_radius = utils.read_interp_func('data/interpFn_radius')
@@ -71,8 +71,7 @@ class SinglePlanetModel:
         self.diagnostic_plots   = diagnostic_plots
         self.save_chains        = save_chains
         self.save_plots         = save_plots
-        self.close_plots        = close_plots
-        self.show_plots         = show_plots
+        self.show_traces        = show_traces
         
         self.ln_normal_func = ln_normal
 
@@ -90,6 +89,8 @@ class SinglePlanetModel:
         self.alpha = 57.9/317.828
         self.beta  = 0.61
         self.sigma = 10**1.82/317.828
+
+        self.outdir = self.data['System'] + '/'
 
         self._get_identifier()
 
@@ -258,11 +259,10 @@ class SinglePlanetModel:
         print('')
 
         if self.diagnostic_plots:
-            plots.trace_plot(sampler.chain, self.labels, identifier=self.identifier, save_plots=self.save_plots, show_plots=False)
+            plots.trace_plot(sampler.chain, self.labels, outfile=self.identifier, save_plots=False, show_traces=self.show_traces)
             plt.suptitle('{0} -- burn-in'.format(self.identifier))
             if self.save_plots:
-                plt.savefig('figures/{0}_burnin.pdf'.format(self.identifier))
-            if self.close_plots:
+                plt.savefig(self.outdir + '{0}_burnin.pdf'.format(self.identifier))
                 plt.close()
 
         # reset sampler and run production chain
@@ -278,10 +278,10 @@ class SinglePlanetModel:
             print('MCMC DONE !')
 
         if self.diagnostic_plots:
-            plots.trace_plot(sampler.chain, self.labels, identifier=self.identifier, \
-                    save_plots=self.save_plots, show_plots=False)
-            if self.close_plots:
-                plt.close()
+            plots.trace_plot(sampler.chain, self.labels, 
+                    outdir = self.outdir, outfile=self.identifier, \
+                    save_plots=self.save_plots, show_traces=self.show_traces)
+            plt.close()
 
         self.sampler = sampler
 
@@ -290,7 +290,7 @@ class SinglePlanetModel:
         if self.save_chains:
             self.save_samples()
 
-        if self.show_plots:
+        if self.show_traces:
             plt.show()
 
         return self.dataset
@@ -334,7 +334,7 @@ class SinglePlanetModel:
 
 
     def save_samples(self):
-        self.dataset.to_csv('results/{0}_chains.csv'.format(self.identifier))
+        self.dataset.to_csv(self.outdir + '{0}_chains.csv'.format(self.identifier))
 
         if self.verbose:
             print('Saving samples ... DONE !')
