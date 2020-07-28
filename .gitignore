@@ -131,3 +131,6 @@ dmypy.json
 # python testing scripts
 single_planet.py
 population_main.py
+
+# testing directories / planets
+WASP-048/
