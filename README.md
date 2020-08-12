@@ -17,13 +17,9 @@ This framework also allows us to account for the uncertainties on the observed p
 
 The framework is divided into two parts:
 
-**Lower Level of the hierarchical model** 
+**Lower Level of the hierarchical model**:Infers the internal luminosity of a single planet.
 
-Infers the internal luminosity of a single planet.
-
-**Upper Level of the hierarchical model**
-
-Inference at the population level
+**Upper Level of the hierarchical model**: Inference at the population level
 
 
 
@@ -41,14 +37,14 @@ Note `PlanetPopulationModel` is not yet available and will be added soon. In the
 `data` contains all the required data sets to run the code. 
 
 - `interpFn_*`: previously interpolated functions of the theoretical models
-- `all_planets-ascii.txt`: the catalog of planets used in our study 
-- `sys_HD_209458`: an example of a dataset in order to run the code on a 
+- `all_planets-ascii.txt`: the database used in our study 
+- `sys_HD_209458`: an example of a dataset in order to run the `SinglePlanetModel`
 
 
 **Examples**
 
 Example demonstrating how to use the code to infer the distribution for the single planets `HD_209458` (i.e. the _lower level_) is provided in the jupyter notebook:
-_single\_planet\_demo.ipynb_
+`single_planet_demo.ipynb`
 
 More examples will be added soon. 
 
