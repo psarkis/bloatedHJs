@@ -43,8 +43,11 @@ Note `PlanetPopulationModel` is not yet available and will be added soon. In the
 
 **Examples**
 
-Example demonstrating how to use the code to infer the distribution for the single planets `HD_209458` (i.e. the _lower level_) is provided in the jupyter notebook:
-`single_planet_demo.ipynb`
+All examples are applied to `HD_209458`.
+
+`single_planet_demo.ipynb`: demonstrates how to use the code to infer the internal luminosity distribution of `HD_209458`.
+
+`single_planet_choice_of_prior.ipynb`: shows how to use different priors for the internal luminosity at the _lower level_ and its effect on the inference.
 
 More examples will be added soon. 
 
