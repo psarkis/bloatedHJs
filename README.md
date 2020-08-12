@@ -17,9 +17,9 @@ This framework also allows us to account for the uncertainties on the observed p
 
 The framework is divided into two parts:
 
-**Lower Level of the hierarchical model**:Infers the internal luminosity of a single planet.
+1- **Lower Level of the hierarchical model**: Infers the internal luminosity of a single planet.
 
-**Upper Level of the hierarchical model**: Inference at the population level
+2- **Upper Level of the hierarchical model**: Inference at the population level
 
 
 
