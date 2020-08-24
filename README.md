@@ -28,9 +28,9 @@ Repo Content
 
 **Code**
 
-The probabilistic model is implemented in `mcmc.py`. Specifically, the _lower level_ in `SinglePlanetModel` and the _upper level_ in `PlanetPopulationModel`.
+The _lower level_  of the probabilistic model is implemented in `single.py` and the _upper level_ in `population.py`.
 
-Note `PlanetPopulationModel` is not yet available and will be added soon. In the meantime, it is available upon request.
+Note `population.py` is not yet available and will be added soon. In the meantime, it is available upon request.
 
 **Data**
 

@@ -36,6 +36,18 @@ def corner_plot(samples, data, derived_params=False, selected_columns=None, \
         - the derived parameters 
         OR
         - columns of choice entered by the user 
+
+    Args:
+        samples          : the samples to do the corner plot
+        data             : (dict) the observed parameters as a dictionary 
+                            to plot the truths values
+        derived_params   : (boolean) True to make a corner plot of the derived parameters:
+                            Tint, Prcb, and Trcb
+                            if False, a corner plot of the fitted parameters:
+                            Lumi, Epsilon, Zhomo, Teq, Mp, Rp
+        selected_columns : custom corner plot of the selected columns
+        outdir           : the absolute path to where the files are saved
+        outfile          : the name of the output pdf file 
     '''
     if selected_columns is None:
         if not derived_params:
@@ -62,6 +74,8 @@ def corner_plot(samples, data, derived_params=False, selected_columns=None, \
 
     if show_plots:
         plt.show()
+    else:
+        plt.close()
 
 
 
