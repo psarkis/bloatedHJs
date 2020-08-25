@@ -1,5 +1,5 @@
 Hot Jupiters internal luminosity population inference
-=====================================================
+========================================
 
 Hot Jupiters population inference based on coupling the observed properties of hot Jupiters to theoretical interior structure models.
 
@@ -39,6 +39,7 @@ Note `population.py` is not yet available and will be added soon. In the meantim
 - `interpFn_*`: previously interpolated functions of the theoretical models
 - `all_planets-ascii.txt`: the database used in our study 
 - `sys_HD_209458`: an example of a dataset in order to run the `SinglePlanetModel`
+- `*_chains.csv`: population posterior samples for the different relations `MLR`, `HEET`, `Tint-Teq`, and `Prcb-Teq` using both priors.
 
 
 **Examples**
@@ -49,7 +50,8 @@ All examples are applied to `HD_209458`.
 
 `single_planet_choice_of_prior.ipynb`: shows how to use different priors for the internal luminosity at the _lower level_ and its effect on the inference.
 
-More examples will be added soon. 
+`population_posterior_plots.ipynb`: example code how to reproduce some of the figures from the paper.
+
 
 Dependencies
 -------------
