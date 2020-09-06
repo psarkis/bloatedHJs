@@ -30,7 +30,6 @@ Repo Content
 
 The _lower level_  of the probabilistic model is implemented in `single.py` and the _upper level_ in `population.py`.
 
-Note `population.py` is not yet available and will be added soon. In the meantime, it is available upon request.
 
 **Data**
 
