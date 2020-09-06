@@ -49,7 +49,7 @@ All examples are applied to `HD_209458`.
 
 `single_planet_choice_of_prior.ipynb`: shows how to use different priors for the internal luminosity at the _lower level_ and its effect on the inference.
 
-`population_posterior_plots.ipynb`: example code how to reproduce some of the figures from the paper.
+`population_posterior_plots.ipynb`: example code to reproduce some of the figures from the paper.
 
 
 Dependencies
