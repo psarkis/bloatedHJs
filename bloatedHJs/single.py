@@ -117,8 +117,6 @@ class SinglePlanetModel:
 
         self.z_relation = self.alpha * mp_true ** (self.beta - 1)
 
-        return self.z_relation
-
     def lnprior(self, theta):
         '''
         Computes the prior probability in log
@@ -137,7 +135,7 @@ class SinglePlanetModel:
         lprior += self.ln_normal_func(mstar_true, self.data['Mstar_completo'], self.data['Mstarerr_completo'])
         lprior += self.ln_normal_func(mp_true, self.data['Mp'], self.data['Mperr'])
         
-        self.z_relation = self._mass_heavy_element_mass_relation(theta)
+        self._mass_heavy_element_mass_relation(theta)
         lprior += self.ln_normal_func(zenv_true, self.z_relation, self.sigma)
         # lprior += self.ln_normal_func(zenv_true, self.data['Zhomo'], 0.05)
 
